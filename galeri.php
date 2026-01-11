@@ -186,13 +186,23 @@ function go(p){
 }
 
 function upload(){
-	file.onchange=()=>{
-		let f=new FormData();
-		for(let x of file.files)f.append('files[]',x);
-		fetch('',{method:'POST',body:f}).then(()=>location.reload());
+	const file = document.getElementById('file');
+
+	file.onchange = () => {
+		const f = new FormData();
+		for (const x of file.files) {
+			f.append('files[]', x);
+		}
+
+		fetch(location.href, {
+			method: 'POST',
+		body: f
+		}).then(() => location.reload());
 	};
+
 	file.click();
 }
+
 
 function del(p){
 	if(confirm('Delete?'))
